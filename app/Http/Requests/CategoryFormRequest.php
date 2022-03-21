@@ -24,7 +24,7 @@ class CategoryFormRequest extends FormRequest
     public function rules()
     {
         return [
-            'category_name' => ['required', 'string', 'max:200'],
+            'category_name' => ['required', 'unique', 'string', 'max:200'],
             'description' => ['required'],
             'meta_title' => ['required'],
             'meta_keyword' => ['required'],

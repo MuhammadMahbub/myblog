@@ -65,7 +65,7 @@ class CategoryController extends Controller
             'created_by' => Auth::user()->id,
             'created_at' => Carbon::now(),
         ]);
-        return redirect()->route('category.index')->with('success', 'Category Added Successfully');
+        return redirect()->route('category.index')->with('message', 'Category Added Successfully');
     }
 
     /**
@@ -123,7 +123,7 @@ class CategoryController extends Controller
             'meta_title' => $request->meta_title,
             'status' => $request->status,
         ]);
-        return redirect()->route('category.index')->with('success', 'Category Updated Successfully');
+        return redirect()->route('category.index')->with('message', 'Category Updated Successfully');
     }
 
     /**
