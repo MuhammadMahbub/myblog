@@ -4,6 +4,9 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\User;
+use App\Models\Category;
+use App\Models\Comment;
 
 class Post extends Model
 {
@@ -17,6 +20,15 @@ class Post extends Model
 
     function category()
     {
-        return $this->belongsTo(Category::class, 'category_id', 'id');
+        return $this->hasOne(Category::class, 'id', 'category_id');
+    }
+    function user()
+    {
+        return $this->hasOne(User::class, 'id', 'created_by');
+    }
+    
+    function comments()
+    {
+        return $this->hasMany(Comment::class, 'post_id', 'id');
     }
 }

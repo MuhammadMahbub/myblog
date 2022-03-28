@@ -15,7 +15,7 @@
         <a href="{{ route('post.create') }}" class="mb-3 btn btn-dark">Create Post</a>
         <div class="row">
             <div class="col-12">
-                <table class="table">
+                <table class="table" id="myTable">
                     <thead>
                         <tr>
                             <th scope="col">#</th>

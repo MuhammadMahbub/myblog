@@ -45,15 +45,14 @@
                     </div>
                     <div class="form-group">
                         <label for="summernote">Description</label>
-                        <input type="text" class="form-control" id="summernote" name="description"
-                            value="{{ $post->description }}">
+                        <textarea type="text" class="form-control" id="summernote" name="description"
+                            value="{!! $post->description !!}"></textarea>
                     </div>
                     <div class="form-group">
                         <label for="yt_iframe">YouTube Link</label>
                         <input type="text" class="form-control" id="yt_iframe" name="yt_iframe"
                             value="{{ $post->yt_iframe }}">
                     </div>
-
                     <button type="submit" class="btn btn-primary">Edit</button>
                 </form>
             </div>

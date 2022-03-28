@@ -24,12 +24,13 @@ class CategoryFormRequest extends FormRequest
     public function rules()
     {
         return [
-            'category_name' => ['required', 'unique', 'string', 'max:200'],
+            'category_name' => ['required', 'unique:categories', 'string', 'max:200'],
             'description' => ['required'],
             'meta_title' => ['required'],
             'meta_keyword' => ['required'],
             'category_photo' => ['required', 'mimes:png,jpg,jpeg'],
             'status' => ['nullable'],
+            'nav_status' => ['nullable'],
         ];
     }
 }

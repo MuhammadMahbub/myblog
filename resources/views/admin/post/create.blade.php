@@ -43,7 +43,7 @@
                         <img width="200" id="output">
                     </div>
                     <div class="form-group">
-                        <label for="summernote">Description</label>
+                        <label for="description">Description</label>
                         <textarea type="text" class="form-control" id="summernote" name="description">{{ old('description') }}</textarea>
                     </div>
                     <div class="form-group">

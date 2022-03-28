@@ -12,6 +12,11 @@ class Category extends Model
     protected $table = 'categories';
 
     protected $fillable = [
-        'category_name', 'category_slug', 'description', 'meta_title', 'meta_keyword', 'category_photo',  'status', 'created_by',
+        'category_name', 'category_slug', 'description', 'meta_title', 'meta_keyword', 'category_photo',  'status', 'nav_status', 'created_by',
     ];
+
+    public function posts()
+    {
+        return $this->hasMany(Post::class, 'category_id', 'id');
+    }
 }

@@ -34,7 +34,7 @@
                     </div>
                     <div class="form-group">
                         <label>Category Photo</label>
-                        <input type="file" class="form-control" id="category_photo" name="category_photo"
+                        <input type="file" class="form-control" id="category_photo" name="category_photo" width="100"
                             value="{{ old('category_photo') }}">
                     </div>
                     <div>
@@ -48,6 +48,10 @@
                         <label for="meta_keyword">Keyword</label>
                         <input type="text" class="form-control" id="meta_keyword" name="meta_keyword"
                             value="{{ old('meta_keyword') }}">
+                    </div>
+                    <div class="form-group mb-3">
+                        <label for="nav_status">Navar Status</label>
+                        <input type="checkbox" id="nav_status" name="nav_status">
                     </div>
                     <div class="form-group mb-3">
                         <label for="status">Status</label>

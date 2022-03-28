@@ -21,6 +21,7 @@ class CreateCategoriesTable extends Migration
             $table->string('meta_title');
             $table->string('meta_keyword');
             $table->string('category_photo');
+            $table->integer('nav_status')->default(0);
             $table->integer('status')->default(0);
             $table->integer('created_by');
             $table->timestamps();

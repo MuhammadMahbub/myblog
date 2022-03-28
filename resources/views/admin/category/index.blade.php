@@ -42,11 +42,13 @@
                                         <div class="col-3"><a class="btn btn-outline-info"
                                                 href="{{ route('category.edit', $category->id) }}">Edit</a></div>
                                         <div class="col-3">
-                                            <form action="{{ route('category.destroy', $category->id) }}" method="post">
+                                            {{-- <form action="{{ route('category.destroy', $category->id) }}" method="post">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button class="btn btn-outline-danger">Delete</button>
-                                            </form>
+                                            </form> --}}
+                                            <button type="button" class="btn btn-outline-danger" id="delete_category_btn"
+                                                value="{{ $category->id }}">Delete</button>
                                         </div>
                                     </div>
                                 </td>
@@ -59,4 +61,42 @@
             </div>
         </div>
     </div>
+
+    {{-- ;;;;;;;;;;; MODAL ....... --}}
+    <!-- Button trigger modal -->
+    <!-- Modal -->
+    <form action="{{ route('categorydelete') }}" method="POST">
+        @csrf
+        <div class="modal fade" id="delete_modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3 class="modal-title" id="exampleModalLabel">Delete Category</h3>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <input type="hidden" name="category_delete_id" id="category_delete_id">
+                        <h5>R U Sure?</h5>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary">Yap Delete</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+@endsection
+
+@section('script')
+    <script>
+        $(document).ready(function() {
+            // $('#delete_category_btn').click(function(e) {
+            $(document).on('click', '#delete_category_btn', function(e) {
+                e.preventDefault();
+                var cat_id = $(this).val()
+                $('#category_delete_id').val(cat_id)
+                $('#delete_modal').modal('show')
+            })
+        })
+    </script>
 @endsection

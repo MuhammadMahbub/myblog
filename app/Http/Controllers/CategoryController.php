@@ -12,6 +12,10 @@ use Illuminate\Support\Facades\File;
 
 class CategoryController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -61,7 +65,8 @@ class CategoryController extends Controller
             'description' => $request->description,
             'meta_title' => $request->meta_title,
             'meta_keyword' => $request->meta_keyword,
-            'status' => $request->status == true ? 1 : 0,
+            'status' => $request->status == true ? 0 : 1,
+            'nav_status' => $request->nav_status == true ? 0 : 1,
             'created_by' => Auth::user()->id,
             'created_at' => Carbon::now(),
         ]);
@@ -122,6 +127,7 @@ class CategoryController extends Controller
             'category_name' => $request->category_name,
             'meta_title' => $request->meta_title,
             'status' => $request->status,
+            'nav_status' => $request->nav_status,
         ]);
         return redirect()->route('category.index')->with('message', 'Category Updated Successfully');
     }
@@ -141,6 +147,19 @@ class CategoryController extends Controller
         }
         // unlink(base_path('public/uploads/category_photos/' . $category->category_photo));
         $category->delete();
+        $category->posts()->delete();
+        return back()->with('delete', 'Category Deleted Successfully');
+    }
+    public function categorydelete(Request $request)
+    {
+        $category = Category::find($request->category_delete_id);
+        $path = 'uploads/category_photos/' . $category->category_photo;
+        if (File::exists($path)) {
+            File::delete($path);
+        }
+        // unlink(base_path('public/uploads/category_photos/' . $category->category_photo));
+        $category->delete();
+        $category->posts()->delete();
         return back()->with('delete', 'Category Deleted Successfully');
     }
 }
